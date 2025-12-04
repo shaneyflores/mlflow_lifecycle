@@ -1,0 +1,45 @@
+name: MLflow CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test-train:
+    runs-on: ubuntu-latest
+    env:
+      EXPERIMENT_NAME: mlflow_lifecycle
+      SHAP_EXPERIMENT_NAME: mlflow_interpretability
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.14'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ingest data using MLflow
+        run: |
+          mlflow run . -e ingest --experiment-name $EXPERIMENT_NAME  --env-manager local
+
+      - name: Train model using MLflow
+        run: |
+          mlflow run . -e train -P n_estimators=150 -P max_depth=6 --experiment-name $EXPERIMENT_NAME  --env-manager local
+
+      - name: Export best model using MLflow
+        run: |
+          mlflow run . -e write --experiment-name $EXPERIMENT_NAME --env-manager local
+
+      - name: Model Interpretability using SHAP
+        run: |
+          mlflow run . -e explain --experiment-name $SHAP_EXPERIMENT_NAME --env-manager local
+
+      - name: Build Docker image
+        run: |
+          docker build -t mlflow-api:latest -f api/Dockerfile .

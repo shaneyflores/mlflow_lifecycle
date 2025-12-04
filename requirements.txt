@@ -1,0 +1,16 @@
+pandas
+scikit-learn
+mlflow
+fastapi
+uvicorn
+shap
+matplotlib
+requests
+httpx
+pytest
+numpy
+joblib
+lime
+virtualenv
+wheel
+shutils

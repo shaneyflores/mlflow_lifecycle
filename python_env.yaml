@@ -1,0 +1,22 @@
+# python_env.yaml
+python: "3.11.14"
+
+# Optional: build dependencies
+build_dependencies:
+  - pip
+  - setuptools
+  - wheel==0.37.1
+
+# Runtime dependencies
+dependencies:
+  - mlflow
+  - scikit-learn
+  - pandas
+  - numpy
+  - matplotlib
+  - fastapi
+  - uvicorn
+  - joblib
+  - shap
+  - lime
+  - shutils

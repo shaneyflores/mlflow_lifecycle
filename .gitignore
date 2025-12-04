@@ -1,0 +1,6 @@
+.venv
+mlruns/
+__pycache__/
+.python-version
+data/
+README.md

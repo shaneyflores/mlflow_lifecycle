@@ -1,0 +1,19 @@
+name: mlflow_lifecycle_pipeline
+python_env: python_env.yaml
+
+entry_points:
+  ingest:
+    command: "python src/ingest.py"
+
+  train:
+    parameters:
+      data_path: {type: str, default: "data/breast_cancer.csv"}
+      n_estimators: {type: int, default: 100}
+      max_depth: {type: int, default: 5}
+    command: "python src/train.py --data_path {data_path} --n_estimators {n_estimators} --max_depth {max_depth}"
+
+  write: 
+    command: "python src/write.py"
+
+  explain:
+    command: "python explain/shap_explain.py"
