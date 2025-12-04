@@ -46,4 +46,4 @@ jobs:
 
       - name: Test deployed model
         run: |
-          pytest -m api -x tests/test_api.py
+          pytest -x tests/test_api.py

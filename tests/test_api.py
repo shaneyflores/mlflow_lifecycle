@@ -1,7 +1,6 @@
 import pytest
 import requests
 
-@pytest.mark.api
 def test_api():
     
     # The URL of your local API
