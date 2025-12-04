@@ -1,6 +1,6 @@
 # MLOps Lifecycle
 
-Shaney Flores
+Shaney Flores<br>
 DATASTUDIES 5750.01
 
 The goal of this project was to gain some familiarity with the CI/CD workflow for a deployed machine learning model using several Python packages, Docker, and GitHub. We build and train a random forest classifier for the Wisconsin Breast Cancer data set, export the best performing model, and containerize it within Docker. 
