@@ -43,3 +43,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t mlflow-api:latest -f api/Dockerfile .
+
+      - name: Test deployed model
+        run: |
+          pytest -m api -x tests/test_api.py
